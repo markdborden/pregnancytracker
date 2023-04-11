@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default function DueDatePicker({ onDateSelected }) {
   const [showPicker, setShowPicker] = useState(false);
@@ -23,8 +23,9 @@ export default function DueDatePicker({ onDateSelected }) {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={showDatepicker}>
+      <TouchableOpacity onPress={showDatepicker} style={styles.datePickerContainer}>
         <Text style={styles.dateText}>{selectedDate.toDateString()}</Text>
+        <Ionicons name="calendar" size={24} color="black" />
       </TouchableOpacity>
       {showPicker && (
         <DateTimePicker
@@ -40,12 +41,14 @@ export default function DueDatePicker({ onDateSelected }) {
   );
 }
 
-
-
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  datePickerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   dateText: {
     fontSize: 18,
